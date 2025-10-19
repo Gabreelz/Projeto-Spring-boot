@@ -1,6 +1,7 @@
 package com.example.demo.Resources;
 
 import java.net.URI;
+import java.security.PublicKey;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import com.example.demo.Service.UserService;
 import com.example.demo.Service.exception.ObjectNotFoundException;
 import com.example.demo.domain.User;
 import com.example.demo.dto.UserDTO;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -56,4 +58,12 @@ public class UserResource {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+        public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
+        User user = userService.fromDTO(objDto);
+        user.setId(id);
+        user = userService.update(user);
+        return ResponseEntity.noContent().build();
+        }
 }
