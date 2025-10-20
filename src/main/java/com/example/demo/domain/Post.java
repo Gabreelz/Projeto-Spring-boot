@@ -1,12 +1,15 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.demo.dto.AuthorDTO;
+import com.example.demo.dto.CommentsDTO;
 
 @Document
 public class Post implements Serializable {
@@ -18,6 +21,8 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+
+	private List<CommentsDTO> comments = new ArrayList<>();
 	
 	public Post() {
 	}
@@ -94,5 +99,17 @@ public class Post implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public List<CommentsDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentsDTO> comments) {
+		this.comments = comments;
 	}
 }

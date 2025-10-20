@@ -1,12 +1,14 @@
 package com.example.demo.Service;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Repository.PostRepository;
 import com.example.demo.Service.exception.ObjectNotFoundException;
+import com.example.demo.domain.Post;
 
 @Service
 public class PostService implements Serializable {
