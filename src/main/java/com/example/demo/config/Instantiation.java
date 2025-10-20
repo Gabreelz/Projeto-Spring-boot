@@ -12,6 +12,7 @@ import com.example.demo.Repository.PostRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.domain.Post;
 import com.example.demo.domain.User;
+import com.example.demo.dto.AuthorDTO;
 
 @Configuration
 public class Instantiation implements CommandLineRunner {
@@ -35,11 +36,14 @@ public class Instantiation implements CommandLineRunner {
 		User logan = new User(null, "Logan", "x@gmail.com");
 		User scott = new User(null, "Scott", "x@gmail.com");
 
-		Post post1 = new Post(null, sdf.parse("19/10/2025"), "Amazing Fantasy", "Cabeça de teia", peter);
-		Post post2 = new Post(null, sdf.parse("21/10/2025"), "Days of Future Past", "Wolverine", logan);
+		Post post1 = new Post(null, sdf.parse("19/10/2025"), "Amazing Fantasy", "Cabeça de teia", new AuthorDTO(peter));
+		Post post2 = new Post(null, sdf.parse("21/10/2025"), "Days of Future Past", "Wolverine", new AuthorDTO(peter));
 
 		
 		userRepository.saveAll(Arrays.asList(peter, logan, scott));
 		postRepository.saveAll(Arrays.asList(post1, post2));
+
+		peter.getPosts().addAll(Arrays.asList(post1,post2));
+		userRepository.save(peter);
 	}
 }
