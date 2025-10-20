@@ -23,4 +23,7 @@ DTO = Data Transfer Object (Objeto de Transferência de Dados)
 Service para o Resource ou vice-versa.
 - Diferente da entidade (como User), ele não representa o banco de dados.
 - Serve para expor apenas os dados necessários, sem entregar tudo do banco (Segurança).
+-------------------------------------- // ------------------------------------------
+Query methods são métodos usados para fazer consultas automáticas ao banco de dados, 
+especialmente em frameworks como Spring Data JPA (e também no Spring Data MongoDB).
 

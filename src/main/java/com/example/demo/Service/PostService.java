@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,9 @@ public class PostService implements Serializable {
         Optional<Post> obj = repo.findById(id);
         return repo.findById(id).orElseThrow(() -> new ObjectNotFoundException("Post não encontrado"));
     }
+
+    public List<Post> findByTitle(String text) {
+		return repo.searchTitle(text);
+	}
     
 }
