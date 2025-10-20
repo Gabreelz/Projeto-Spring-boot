@@ -21,6 +21,8 @@ import com.example.demo.dto.UserDTO;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.domain.Post;
+
 
 
 @RestController
@@ -66,4 +68,10 @@ public class UserResource {
         user = userService.update(user);
         return ResponseEntity.noContent().build();
         }
+
+    @RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = userService.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
 }
